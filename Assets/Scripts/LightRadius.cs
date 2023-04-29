@@ -51,5 +51,11 @@ public class LightRadius : MonoBehaviour
             collision.GetComponent<Candle>().isonfire = true;
             StartCoroutine(RadiusIncrease());
         }
+        if(collision.tag == "Firefly")
+        {
+            defaultradius += 1f;
+            StartCoroutine(RadiusIncrease());
+            Destroy(collision.gameObject);
+        }
     }
 }
