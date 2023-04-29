@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DeathSceneController : MonoBehaviour
@@ -28,6 +29,7 @@ public class DeathSceneController : MonoBehaviour
     private void OnDialogComplete()
     {
         _buttonGroup.DOFade(1, 1.5f);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     [ContextMenu("Open Death Screen")]
@@ -38,4 +40,7 @@ public class DeathSceneController : MonoBehaviour
             _dialogueController.StartDialog();
         });
     }
+
+    public void RetryLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void QuitGame() => Application.Quit();
 }
