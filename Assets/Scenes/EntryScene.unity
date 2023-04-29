@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &237212025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 237212027}
+  - component: {fileID: 237212026}
+  m_Layer: 0
+  m_Name: EntrySceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &237212026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237212025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cf948bd3b57aa40b304a678e537374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueController: {fileID: 248553497}
+  _transitionImage: {fileID: 820115204}
+--- !u!4 &237212027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237212025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248553496
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,18 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ed597cb88c2a84d8340db985fe2ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogues:
-  - "How are you today Mr. White?\t"
-  - Fine Doctor, i guess
-  - You looked troubled today.
-  - "What's bothering you?\t"
-  - To be honest i am not sure.
-  - I am gonna try something new today.
-  - What do you mean Doctor?
-  - I am gonna directly go to source of the problem.
+  _dialogBox: {fileID: 474966571}
   _dialogueText: {fileID: 1207303566}
-  _transitionImage: {fileID: 820115204}
   _delayBetweenLetters: 0.05
+  _dialogAsset: {fileID: 11400000, guid: 7ff77e748abafbc4db7a23030273589b, type: 2}
 --- !u!4 &248553498
 Transform:
   m_ObjectHideFlags: 0
@@ -175,9 +213,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1709885033}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474966571
 GameObject:
@@ -191,7 +230,7 @@ GameObject:
   - component: {fileID: 474966574}
   - component: {fileID: 474966573}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Dialogue Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +255,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 22.979996}
-  m_SizeDelta: {x: -100, y: 108.2}
+  m_SizeDelta: {x: -100, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &474966573
 MonoBehaviour:
@@ -386,7 +425,7 @@ GameObject:
   - component: {fileID: 820115205}
   - component: {fileID: 820115204}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Transition Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.949829, y: 0}
+  m_AnchoredPosition: {x: 7.949707, y: 0}
   m_SizeDelta: {x: -15.900257, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207303566
@@ -578,8 +617,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5a8175d8fe571e648ac14f3d74395244, type: 2}
+  m_sharedMaterial: {fileID: -2864268337173867283, guid: 5a8175d8fe571e648ac14f3d74395244, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -603,8 +642,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -653,37 +692,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207303564}
   m_CullTransparentMesh: 1
---- !u!1 &1241710908
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1241710909}
-  m_Layer: 0
-  m_Name: DeathSceneController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1241710909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241710908}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709885029
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,8 +786,8 @@ RectTransform:
   m_Children:
   - {fileID: 474966572}
   - {fileID: 820115203}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 248553498}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

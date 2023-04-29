@@ -1,27 +1,33 @@
 using TMPro;
 using UnityEngine;
-using DG.Tweening;
 using System.Collections;
 
 public class DialogueController : MonoBehaviour
 {
-    [SerializeField, TextArea(0, 1000)] private string[] _dialogues;
+    [SerializeField] private GameObject _dialogBox;
     [SerializeField] private TextMeshProUGUI _dialogueText;
-    [SerializeField] private UnityEngine.UI.Image _transitionImage;
     [SerializeField] private float _delayBetweenLetters = 0.2f;
+    [SerializeField] private DialogueAsset _dialogAsset;
+    public event System.Action OnDialogCompleted;
 
     private int _currentDialogIndex = 0;
-    private bool _transitionStarted = false;
+    private bool _dialogStarted = false;
     private Coroutine _dialogRoutine;
 
-    private void Start()
-    {
-        StartCoroutine(StartNextDialog());
-    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_dialogStarted && Input.GetKeyDown(KeyCode.Space))
+        {
             StartCoroutine(StartNextDialog());
+        }
+    }
+
+    public void StartDialog()
+    {
+        _dialogStarted = true;
+        _currentDialogIndex = 0;
+        _dialogBox.SetActive(true);
+        StartCoroutine(StartNextDialog());
     }
 
     public IEnumerator StartNextDialog()
@@ -29,36 +35,51 @@ public class DialogueController : MonoBehaviour
         if (_dialogRoutine != null)
         {
             StopCoroutine(_dialogRoutine);
+            _dialogueText.text = _dialogAsset.Dialogues[_currentDialogIndex];
             _currentDialogIndex++;
-        }
-
-        if (_currentDialogIndex < _dialogues.Length)
-        {
-            yield return _dialogRoutine =  StartCoroutine(StartDialog());
-            _currentDialogIndex++;
+            _dialogRoutine = StartCoroutine(StartDialogCR());
         }
         else
         {
-            StartTransition();
-            _transitionStarted = true;
+            yield return _dialogRoutine = StartCoroutine(StartDialogCR());
+            _currentDialogIndex++;
+            if (_currentDialogIndex >= _dialogAsset.Dialogues.Length)
+            {
+                FinishDialog();
+            }
         }
     }
-    
-    private void StartTransition()
+
+    private void FinishDialog()
     {
-        if (_transitionStarted == false)
-        _transitionImage.DOFade(1, 1.5f).OnComplete(() => UnityEngine.SceneManagement.SceneManager.LoadScene(2));
+        if (_dialogStarted)
+        {
+            _dialogStarted = false;
+            OnDialogCompleted?.Invoke();
+        }
     }
 
-    private IEnumerator StartDialog()
+    public void CloseDialog()
     {
-        _dialogueText.text = "";
-        int letterIndex = 0;
-        while (letterIndex < _dialogues[_currentDialogIndex].Length)
+        _dialogBox.SetActive(false);
+    }
+
+    private IEnumerator StartDialogCR()
+    {
+        if (_currentDialogIndex < _dialogAsset.Dialogues.Length)
         {
-            _dialogueText.text += _dialogues[_currentDialogIndex][letterIndex];
-            letterIndex++;
-            yield return new WaitForSeconds(_delayBetweenLetters);
+            _dialogueText.text = "";
+            int letterIndex = 0;
+            while (letterIndex < _dialogAsset.Dialogues[_currentDialogIndex].Length)
+            {
+                _dialogueText.text += _dialogAsset.Dialogues[_currentDialogIndex][letterIndex];
+                letterIndex++;
+                yield return new WaitForSeconds(_delayBetweenLetters);
+            }
+        }
+        else 
+        {
+            FinishDialog();
         }
     }
 }

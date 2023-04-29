@@ -24,7 +24,7 @@ public class LightRadius : MonoBehaviour
         light2D.pointLightOuterRadius = lightradius;
         if(!(radiusdecreaserate > 0))
         {
-            GameManager.Instance.isplayerdead = true;
+            GameManager.Player.Die();
         }
     }
     public void RadiusDecrease()

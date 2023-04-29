@@ -13,16 +13,19 @@ public class Movement : MonoBehaviour
     public GameObject groundraycastorigin;
     public float groundraycastlength;
     public Rigidbody2D rb2D;
-    // Start is called before the first frame update
+
+    private PlayerController _playerController;
+
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        _playerController = GetComponent<PlayerController>();
     }
-    // Update is called once per frame
+    
     void Update()
     {
         CheckGround();
-        if(!GameManager.Instance.isplayerdead)
+        if(!_playerController.IsDead)
         {
             Jump();
             CheckButton();
@@ -30,7 +33,7 @@ public class Movement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(!GameManager.Instance.isplayerdead)
+        if(!_playerController.IsDead)
         {
             Move();
         }
@@ -91,14 +94,6 @@ public class Movement : MonoBehaviour
         if(!D_held && !A_held)
         {
             rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
-        }
-
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Blood")
-        {
-            GameManager.Instance.isplayerdead = true;
         }
     }
 }
