@@ -49,6 +49,7 @@ public class LightRadius : MonoBehaviour
         if(collision.tag == "Candle" && collision.GetComponent<Candle>().isonfire != true)
         {
             collision.GetComponent<Candle>().isonfire = true;
+            collision.GetComponent<Candle>().DestroyLight();
             StartCoroutine(RadiusIncrease());
         }
         if(collision.tag == "Firefly")
