@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 1628523518}
   - component: {fileID: 1628523515}
   - component: {fileID: 359948251}
+  - component: {fileID: 8668065133550329927}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -313,7 +314,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightradius: 0
-  defaultradius: 10
+  defaultradius: 5
   radiusdecreaserate: 1
   pointlight: {fileID: 594423020}
   light2D: {fileID: 594423022}
+--- !u!114 &8668065133550329927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305838126297488014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4022a94699f5b499c0a45831ef06dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
