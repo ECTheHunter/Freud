@@ -22,12 +22,19 @@ public class Movement : MonoBehaviour
     void Update()
     {
         CheckGround();
-        Jump();
-        CheckButton();
+        if(!GameManager.Instance.isplayerdead)
+        {
+            Jump();
+            CheckButton();
+        }
     }
     void FixedUpdate()
     {
-        Move();
+        if(!GameManager.Instance.isplayerdead)
+        {
+            Move();
+        }
+
     }
     public void CheckButton()
     {
@@ -86,5 +93,12 @@ public class Movement : MonoBehaviour
             rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
         }
 
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Blood")
+        {
+            GameManager.Instance.isplayerdead = true;
+        }
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8406422137088091163}
   - component: {fileID: 8406422137088091165}
-  - component: {fileID: 8406422137088091164}
+  - component: {fileID: 6815000812968748119}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8406422137088091164
+--- !u!114 &6815000812968748119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,8 +61,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 0
-  m_YDamping: 0
+  m_XDamping: 0.5
+  m_YDamping: 0.2
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
