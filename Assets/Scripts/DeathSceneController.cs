@@ -41,6 +41,19 @@ public class DeathSceneController : MonoBehaviour
         });
     }
 
-    public void RetryLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    public void QuitGame() => Application.Quit();
+    public void RetryLevel()
+    {
+        TransitionManager.Instance.OpenWhiteTransition(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        });
+    }
+
+    public void QuitGame()
+    {
+        TransitionManager.Instance.OpenBlackPanels(() =>
+        {
+            Application.Quit();
+        });
+    }
 }

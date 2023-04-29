@@ -13,7 +13,7 @@ public class EntrySceneManager : MonoBehaviour
 
     private void Start()
     {
-        _dialogueController.StartDialog();
+        TransitionManager.Instance.OpenBlackPanels(OnTransition);
     }
 
     private void OnDisable()
@@ -21,11 +21,13 @@ public class EntrySceneManager : MonoBehaviour
         _dialogueController.OnDialogCompleted -= OnDialogComplete;
     }
 
+    private void OnTransition()
+    {
+        _dialogueController.StartDialog();
+    }
+
     private void OnDialogComplete()
     {
-        _transitionImage.DOFade(1, 1.5f).OnComplete(() =>
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-        });
+        TransitionManager.Instance.OpenWhiteTransition(() => UnityEngine.SceneManagement.SceneManager.LoadScene(2));
     }
 }
