@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb2D;
     public AudioSource walkingsound;
     private PlayerController _playerController;
-    private Animator _animator;
+    public Animator _animator;
 
     void Start()
     {

@@ -17,5 +17,7 @@ public class PlayerController : MonoBehaviour
 
         OnPlayerDeath?.Invoke();
         IsDead = true;
+        GetComponent<Movement>()._animator.SetBool("IsWalking", false);
+        GetComponent<Movement>().walkingsound.Stop();
     }
 }
