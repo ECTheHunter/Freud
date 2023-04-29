@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Candle
   - Firefly
+  - Blood
   layers:
   - Default
   - TransparentFX

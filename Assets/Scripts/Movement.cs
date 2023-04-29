@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
     }
     public void CheckGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundraycastorigin.transform.position, Vector2.down, groundraycastlength);
+        RaycastHit2D hit = Physics2D.BoxCast(groundraycastorigin.transform.position, new Vector2(groundraycastlength, groundraycastlength), 0f, Vector2.down);
         if (hit.collider != null)
         {
             isgrounded = true;
@@ -107,5 +107,13 @@ public class Movement : MonoBehaviour
             rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
             walkingsound.Stop();
         }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Blood")
+        {
+            GameManager.Player.Die();
+        }
+        
     }
 }

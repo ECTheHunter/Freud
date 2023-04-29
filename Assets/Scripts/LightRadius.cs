@@ -54,7 +54,7 @@ public class LightRadius : MonoBehaviour
         }
         if(collision.tag == "Firefly")
         {
-            defaultradius += 1f;
+            defaultradius += 1.5f;
             StartCoroutine(RadiusIncrease());
             Destroy(collision.gameObject);
         }
