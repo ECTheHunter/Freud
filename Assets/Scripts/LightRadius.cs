@@ -34,12 +34,22 @@ public class LightRadius : MonoBehaviour
             lightradius -= radiusdecreaserate * Time.deltaTime;
         }
     }
+    IEnumerator RadiusIncrease()
+    {   
+        while(lightradius < defaultradius)
+        {
+            lightradius += radiusdecreaserate * 5 * Time.deltaTime;
+            yield return null;
+        }
+
+
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Candle" && collision.GetComponent<Candle>().isonfire != true)
         {
-            lightradius = defaultradius;
             collision.GetComponent<Candle>().isonfire = true;
+            StartCoroutine(RadiusIncrease());
         }
     }
 }
