@@ -15,21 +15,27 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb2D;
 
     private PlayerController _playerController;
+    private Animator _animator;
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         _playerController = GetComponent<PlayerController>();
+        _animator = GetComponent<Animator>();
     }
     
     void Update()
     {
+        if (_playerController.IsDead) return;
+
         CheckGround();
-        if(!_playerController.IsDead)
-        {
-            Jump();
-            CheckButton();
-        }
+        Jump();
+        CheckButton();
+
+        if (A_held || D_held)
+            _animator.SetBool("IsWalking", true);
+        else if (!A_held && !D_held)
+            _animator.SetBool("IsWalking", false);
     }
     void FixedUpdate()
     {
