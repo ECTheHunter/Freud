@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public bool A_held;
+    public bool D_held;
     public bool isgrounded;
     public float speed;
     public float jump;
@@ -16,13 +18,21 @@ public class Movement : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
     }
-
     // Update is called once per frame
     void Update()
     {
         CheckGround();
         Jump();
+        CheckButton();
+    }
+    void FixedUpdate()
+    {
         Move();
+    }
+    public void CheckButton()
+    {
+        A_held = Input.GetKey(KeyCode.A);
+        D_held = Input.GetKey(KeyCode.D);
     }
     public void Jump()
     {
@@ -45,7 +55,7 @@ public class Movement : MonoBehaviour
     }
     public void Move()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (A_held)
         {
             if (isgrounded)
             {
@@ -53,12 +63,12 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                rb2D.velocity = new Vector2(-speed * airmultiplier, rb2D.velocity.y);
+                rb2D.velocity = new Vector2(-speed / airmultiplier, rb2D.velocity.y);
             }
             transform.localScale = new Vector3(-1f, 1f, 0f);
   
         }
-        if (Input.GetKey(KeyCode.D))
+        if (D_held)
         {
 
             if (isgrounded)
@@ -67,9 +77,13 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                rb2D.velocity = new Vector2(speed * airmultiplier, rb2D.velocity.y);
+                rb2D.velocity = new Vector2(speed / airmultiplier, rb2D.velocity.y);
             }
             transform.localScale = new Vector3(1f, 1f, 0f);
+        }
+        if(!D_held && !A_held)
+        {
+            rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
         }
 
     }
