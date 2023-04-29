@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public GameObject groundraycastorigin;
     public float groundraycastlength;
     public Rigidbody2D rb2D;
-
+    public AudioSource walkingsound;
     private PlayerController _playerController;
     private Animator _animator;
 
@@ -32,9 +32,9 @@ public class Movement : MonoBehaviour
         Jump();
         CheckButton();
 
-        if (A_held || D_held)
+        if ((A_held || D_held) && isgrounded)
             _animator.SetBool("IsWalking", true);
-        else if (!A_held && !D_held)
+        else if ((!A_held && !D_held) || !isgrounded)
             _animator.SetBool("IsWalking", false);
     }
     void FixedUpdate()
@@ -67,7 +67,12 @@ public class Movement : MonoBehaviour
         else
         {
             isgrounded = false;
+            walkingsound.Stop();
         }
+    }
+    public void PLayWalkingSound()
+    {
+        walkingsound.Play();
     }
     public void Move()
     {
@@ -100,6 +105,7 @@ public class Movement : MonoBehaviour
         if(!D_held && !A_held)
         {
             rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
+            walkingsound.Stop();
         }
     }
 }
