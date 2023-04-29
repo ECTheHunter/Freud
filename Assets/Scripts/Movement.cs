@@ -108,4 +108,12 @@ public class Movement : MonoBehaviour
             walkingsound.Stop();
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Blood")
+        {
+            GameManager.Player.Die();
+        }
+        
+    }
 }
