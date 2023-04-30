@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,10 @@ public class GameManager : MonoBehaviour
             return _player;
         }
     }
-
+    private void Start()
+    {
+        TransitionManager.Instance.CloseWhiteTransition(null);
+    }
     private static PlayerController _player;
     void Awake()
     {
