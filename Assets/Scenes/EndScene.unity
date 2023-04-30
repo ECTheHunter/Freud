@@ -224,6 +224,7 @@ MonoBehaviour:
   _credits: {fileID: 1982094374}
   _toBeContinuedText: {fileID: 683347675}
   _quitButton: {fileID: 267890827}
+  _canvas: {fileID: 773796434}
 --- !u!114 &248553497 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5104702084965304870, guid: 4bf02f99a268a7e4488ffdb08cdcc841, type: 3}

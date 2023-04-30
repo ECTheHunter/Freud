@@ -11,12 +11,14 @@ public class EndSceneManager : MonoBehaviour
     [SerializeField] private CanvasGroup _credits;
     [SerializeField] private TMPro.TextMeshProUGUI _toBeContinuedText;
     [SerializeField] private Image _quitButton;
+    [SerializeField] private Canvas _canvas;
 
     private void Start()
     {
         TransitionManager.Instance.CloseWhiteTransition(() =>
         {
             _dialogController.StartDialog();
+            SoundManager.Instance.PlayMainTheme();
         });
 
         _quitButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -33,6 +35,7 @@ public class EndSceneManager : MonoBehaviour
     [ContextMenu("On Dialog Complete")]
     public void OnDialogCompleted()
     {
+        _canvas.sortingOrder = 3;
         Sequence seq = DOTween.Sequence();
         seq.Append(_bgAndName.DOFade(1, 2.5f));
         seq.Append(_credits.DOFade(1, 1.5f));

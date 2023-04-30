@@ -1,4 +1,3 @@
-using TreeEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +14,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        SoundManager.Instance.StopMainTheme();
+        SoundManager.Instance.PlayLevelSound = true;
         TransitionManager.Instance.CloseWhiteTransition(null);
     }
     private static PlayerController _player;
@@ -32,9 +33,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        SoundManager.Instance.PlayLevelSound = false;
     }
 }

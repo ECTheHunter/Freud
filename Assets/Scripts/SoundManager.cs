@@ -1,31 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
+
     public AudioSource audioSource;
+    public AudioSource mainThemeSource;
     public AudioClip audioclip1;
     public AudioClip audioclip2;
     public AudioClip audioclip3;
-    // Start is called before the first frame update
-    void Start()
+
+    public bool PlayLevelSound = false;
+
+    private void Awake()
     {
-        
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (!PlayLevelSound) return;
+
         PlaySound();
     }
+
+    public void PlayMainTheme()
+    {
+        mainThemeSource.time = 0;
+        mainThemeSource.Play();
+    }
+
+    public void StopMainTheme()
+    {
+        mainThemeSource.Stop();
+    }
+
     public void PlaySound()
     {
         if(audioSource.isPlaying == true)
         {
             return;
         }
-        int x = (int)Random.Range(1f, 4f);
+        int x = Random.Range(1, 4);
         switch (x)
         {
             case 1: audioSource.clip = audioclip1;
