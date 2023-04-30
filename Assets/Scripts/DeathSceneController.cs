@@ -7,6 +7,7 @@ public class DeathSceneController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _buttonGroup;
     [SerializeField] private Image _blackScreenImage;
+    [SerializeField] private Image _dialogImage;
     [SerializeField] private DialogueController _dialogueController;
 
     private void OnEnable()
@@ -35,9 +36,20 @@ public class DeathSceneController : MonoBehaviour
     [ContextMenu("Open Death Screen")]
     public void OpenDeathScene()
     {
+        _blackScreenImage.gameObject.SetActive(true);
+        _dialogImage.gameObject.SetActive(false);
         _blackScreenImage.DOFade(1, 1.5f).OnComplete(() =>
         {
-            _dialogueController.StartDialog();
+            //_dialogueController.StartDialog();
+            TransitionManager.Instance.CloseBlackPanels(() =>
+            {
+                _blackScreenImage.gameObject.SetActive(false);
+                _dialogImage.gameObject.SetActive(true);
+                TransitionManager.Instance.OpenBlackPanels(() =>
+                {
+                    _dialogueController.StartDialog();
+                });
+            });
         });
     }
 

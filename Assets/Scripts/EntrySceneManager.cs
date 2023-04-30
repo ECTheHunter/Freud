@@ -4,7 +4,6 @@ using UnityEngine;
 public class EntrySceneManager : MonoBehaviour
 {
     [SerializeField] private DialogueController _dialogueController;
-    [SerializeField] private UnityEngine.UI.Image _transitionImage;
 
     private void OnEnable()
     {
