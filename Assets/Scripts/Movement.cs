@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.velocity = new Vector2(-speed / airmultiplier, rb2D.velocity.y);
             }
-            transform.localScale = new Vector3(-1.7f, 1f, 0f);
+            transform.localScale = new Vector3(-1.7f, 1.7f, 0f);
   
         }
         if (D_held)
@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.velocity = new Vector2(speed / airmultiplier, rb2D.velocity.y);
             }
-            transform.localScale = new Vector3(1.7f, 1f, 0f);
+            transform.localScale = new Vector3(1.7f, 1.7f, 0f);
         }
         if(!D_held && !A_held)
         {
