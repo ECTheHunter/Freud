@@ -22,6 +22,7 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    [ContextMenu("Start Dialog")]
     public void StartDialog()
     {
         _dialogStarted = true;
@@ -70,6 +71,9 @@ public class DialogueController : MonoBehaviour
         {
             _dialogueText.text = "";
             int letterIndex = 0;
+            string[] left = _dialogAsset.Dialogues[_currentDialogIndex].Split(' ');
+            letterIndex += left[0].Length;
+            _dialogueText.text += left[0];
             while (letterIndex < _dialogAsset.Dialogues[_currentDialogIndex].Length)
             {
                 _dialogueText.text += _dialogAsset.Dialogues[_currentDialogIndex][letterIndex];

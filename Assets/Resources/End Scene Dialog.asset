@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2936a36ff4b62b34c9c317e957deb6bf, type: 3}
+  m_Name: End Scene Dialog
+  m_EditorClassIdentifier: 
+  <Dialogues>k__BackingField:
+  - <color=#ffffff><b>Doctor:</b></color> How do you feel now?
+  - '<color=#C7B575><b>Patient:</b></color> I feel like relieved. '
+  - <color=#C7B575><b>Patient:</b></color> What happened?
+  - <color=#ffffff><b>Doctor:</b></color> I helped you to conquer your fear.
+  - '<color=#C7B575><b>Patient:</b></color> Thank you for helping me. '
+  - <color=#ffffff><b>Doctor:</b></color> Now, tell me about your childhood.

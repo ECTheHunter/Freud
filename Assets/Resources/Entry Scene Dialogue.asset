@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Entry Scene Dialogue
   m_EditorClassIdentifier: 
   <Dialogues>k__BackingField:
-  - "How are you today Mr. White?\t"
-  - Fine Doctor, i guess
-  - You looked troubled today.
-  - "What's bothering you?\t"
-  - To be honest i am not sure.
-  - I am gonna try something new today.
-  - What do you mean Doctor?
-  - I am gonna directly go to source of the problem.
+  - "<color=#ffffff><b>Doctor:</b></color> How are you today Mr. White?\t"
+  - <color=#C7B575><b>Patient:</b></color> Fine Doctor, i guess
+  - <color=#ffffff><b>Doctor:</b></color> You looked troubled today.
+  - "<color=#ffffff><b>Doctor:</b></color> What's bothering you?\t"
+  - <color=#C7B575><b>Patient:</b></color>  To be honest i am not sure.
+  - <color=#ffffff><b>Doctor:</b></color> I am gonna try something new today.
+  - <color=#C7B575><b>Patient:</b></color> What do you mean Doctor?
+  - <color=#ffffff><b>Doctor:</b></color> I am gonna directly go to source of the
+    problem.
