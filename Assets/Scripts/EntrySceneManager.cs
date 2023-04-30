@@ -31,7 +31,7 @@ public class EntrySceneManager : MonoBehaviour
 
     private void OnDialogComplete()
     {
-        _clock.transform.DORotate(Vector3.forward * 20, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        _clock.transform.DORotate(Vector3.forward * 35, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
         _clockGroup.DOFade(1, 1f).OnComplete(() =>
         {
             DoFade();
@@ -40,7 +40,7 @@ public class EntrySceneManager : MonoBehaviour
 
     async void DoFade()
     {
-        await Task.Delay(TimeSpan.FromSeconds(3.0f));
+        await Task.Delay(TimeSpan.FromSeconds(8.0f));
         TransitionManager.Instance.OpenWhiteTransition(() => UnityEngine.SceneManagement.SceneManager.LoadScene(2));
     }
 }

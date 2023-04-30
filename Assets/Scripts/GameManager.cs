@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
             Destroy(Instance);
             Instance = this;
         }
-        DontDestroyOnLoad(this);
     }
 
     private void OnDisable()
