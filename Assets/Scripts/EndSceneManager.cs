@@ -9,7 +9,7 @@ public class EndSceneManager : MonoBehaviour
     [SerializeField] private DialogueController _dialogController;
     [SerializeField] private CanvasGroup _bgAndName;
     [SerializeField] private CanvasGroup _credits;
-    [SerializeField] private CanvasGroup _toBeContinuedText;
+    [SerializeField] private TMPro.TextMeshProUGUI _toBeContinuedText;
     [SerializeField] private Image _quitButton;
 
     private void Start()
@@ -18,6 +18,11 @@ public class EndSceneManager : MonoBehaviour
         {
             _dialogController.StartDialog();
         });
+
+        _quitButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
     }
 
     private void OnEnable()
@@ -25,15 +30,13 @@ public class EndSceneManager : MonoBehaviour
         _dialogController.OnDialogCompleted += OnDialogCompleted;   
     }
 
-    private void OnDialogCompleted()
+    [ContextMenu("On Dialog Complete")]
+    public void OnDialogCompleted()
     {
         Sequence seq = DOTween.Sequence();
         seq.Append(_bgAndName.DOFade(1, 2.5f));
         seq.Append(_credits.DOFade(1, 1.5f));
-        seq.Append(_credits.DOFade(1, 2.5f));
-        seq.OnComplete(() =>
-        {
-            _quitButton.DOFade(1, 1f);
-        });
+        seq.Append(_toBeContinuedText.DOFade(1, 2.5f));
+        seq.Append(_quitButton.DOFade(1, 1f));
     }
 }
