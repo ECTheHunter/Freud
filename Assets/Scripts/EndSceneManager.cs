@@ -12,9 +12,11 @@ public class EndSceneManager : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI _toBeContinuedText;
     [SerializeField] private Image _quitButton;
     [SerializeField] private Canvas _canvas;
-
+    public AudioSource audioSource;
     private void Start()
     {
+        audioSource.time = 0.5f;
+        audioSource.Play();
         TransitionManager.Instance.CloseWhiteTransition(() =>
         {
             _dialogController.StartDialog();
@@ -35,6 +37,7 @@ public class EndSceneManager : MonoBehaviour
     [ContextMenu("On Dialog Complete")]
     public void OnDialogCompleted()
     {
+        Cursor.lockState = CursorLockMode.None;
         _canvas.sortingOrder = 3;
         Sequence seq = DOTween.Sequence();
         seq.Append(_bgAndName.DOFade(1, 2.5f));

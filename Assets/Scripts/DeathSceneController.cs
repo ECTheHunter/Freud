@@ -9,6 +9,7 @@ public class DeathSceneController : MonoBehaviour
     [SerializeField] private Image _blackScreenImage;
     [SerializeField] private Image _dialogImage;
     [SerializeField] private DialogueController _dialogueController;
+    public AudioSource audioSource;
 
     private void OnEnable()
     {
@@ -45,6 +46,8 @@ public class DeathSceneController : MonoBehaviour
             {
                 _blackScreenImage.gameObject.SetActive(false);
                 _dialogImage.gameObject.SetActive(true);
+                audioSource.time = 0.5f;
+                audioSource.Play();
                 TransitionManager.Instance.OpenBlackPanels(() =>
                 {
                     _dialogueController.StartDialog();
