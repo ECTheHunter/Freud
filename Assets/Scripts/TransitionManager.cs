@@ -67,7 +67,10 @@ public class TransitionManager : MonoBehaviour
 
     public void CloseWhiteTransition(Action onComplete)
     {
-        _whitePanel.gameObject.SetActive(false);
-        _whitePanel.DOFade(0, 1).OnComplete(() => onComplete?.Invoke());
+        
+        _whitePanel.DOFade(0, 1).OnComplete(() => {
+            _whitePanel.gameObject.SetActive(false);
+            onComplete?.Invoke();
+        });
     }
 }
