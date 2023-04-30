@@ -47,7 +47,6 @@ public class TransitionManager : MonoBehaviour
         _downPanel.transform.DOLocalMoveY(-450, 0.5f);
         _upPanel.transform.DOLocalMoveY(450, 0.5f).OnComplete(() =>
         {
-            _blackPanelAudio.Play();
             onComplete?.Invoke();
         });
     }
@@ -75,7 +74,11 @@ public class TransitionManager : MonoBehaviour
     public void OpenWhiteTransition(Action onComplete)
     {
         _whitePanel.gameObject.SetActive(true);
-        _whitePanel.DOFade(1, 1).OnComplete(() => onComplete?.Invoke());
+        _blackPanelAudio.Play();
+        _whitePanel.DOFade(1, 5).OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });
     }
 
     public void CloseWhiteTransition(Action onComplete)
