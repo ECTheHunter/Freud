@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -113,6 +114,10 @@ public class Movement : MonoBehaviour
         if(collision.tag == "Blood")
         {
             GameManager.Player.Die();
+        }
+        if(collision.tag == "Finish")
+        {
+            TransitionManager.Instance.OpenWhiteTransition(()=>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
         }
         
     }
