@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.velocity = new Vector2(-speed / airmultiplier, rb2D.velocity.y);
             }
-            transform.localScale = new Vector3(-1.7f, 1f, 0f);
+            transform.localScale = new Vector3(-1.7f, 1.7f, 0f);
   
         }
         if (D_held)
@@ -100,7 +101,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.velocity = new Vector2(speed / airmultiplier, rb2D.velocity.y);
             }
-            transform.localScale = new Vector3(1.7f, 1f, 0f);
+            transform.localScale = new Vector3(1.7f, 1.7f, 0f);
         }
         if(!D_held && !A_held)
         {
@@ -113,6 +114,10 @@ public class Movement : MonoBehaviour
         if(collision.tag == "Blood")
         {
             GameManager.Player.Die();
+        }
+        if(collision.tag == "Finish")
+        {
+            TransitionManager.Instance.OpenWhiteTransition(()=>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
         }
         
     }
